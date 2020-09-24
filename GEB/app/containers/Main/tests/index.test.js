@@ -1,6 +1,6 @@
 /**
  *
- * Tests for Header
+ * Tests for Main
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -11,15 +11,16 @@ import { render } from 'react-testing-library';
 import { IntlProvider } from 'react-intl';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import Header from '../index';
+import { Main } from '../index';
 import { DEFAULT_LOCALE } from '../../../i18n';
 
-describe('<Header />', () => {
+describe('<Main />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
+    const dispatch = jest.fn();
     render(
       <IntlProvider locale={DEFAULT_LOCALE}>
-        <Header />
+        <Main dispatch={dispatch} />
       </IntlProvider>,
     );
     expect(spy).not.toHaveBeenCalled();
@@ -39,7 +40,7 @@ describe('<Header />', () => {
       container: { firstChild },
     } = render(
       <IntlProvider locale={DEFAULT_LOCALE}>
-        <Header />
+        <Main />
       </IntlProvider>,
     );
     expect(firstChild).toMatchSnapshot();
